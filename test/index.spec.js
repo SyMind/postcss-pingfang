@@ -16,6 +16,9 @@ it('postcss-font-weight', async () => {
         .four {
             color: red;
         }
+        .five {
+            font-family: PingFangSC-Light!important;
+        }
     `);
 
     expect(result.css.replace(/\s/g, '')).toEqual(`
@@ -31,6 +34,9 @@ it('postcss-font-weight', async () => {
         .four {
             color: red;
         }
+        .five {
+            font-weight: 100!important;
+        }
         @supports (-webkit-touch-callout: none) {
             .one {
                 font-family: PingFangSC-Light;
@@ -40,6 +46,9 @@ it('postcss-font-weight', async () => {
             }
             .three {
                 font-family: PingFangSC-Medium;
+            }
+            .five {
+                font-family: PingFangSC-Light!important;
             }
         }
     `.replace(/\s/g, ''));

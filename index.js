@@ -47,11 +47,15 @@ module.exports = (opts = {}) => {
                         const fontWeight = PING_FANG_SC_MAPPINGS[fontFamily.trim()]
                         if (fontWeight) {
                             if (!fontWeightDecl) {
-                                fontFamilyDecl.after(`font-weight: ${fontWeight}`)
+                                let decl = `font-weight: ${fontWeight}`
+                                if (fontFamilyDecl.important) {
+                                    decl += '!important'
+                                }
+                                fontFamilyDecl.after(decl)
                             }
 
                             fontFamilyDecl.remove()
-                            additionalRules.push([rule.selector, fontFamily])
+                            additionalRules.push([rule.selector, fontFamily, fontFamilyDecl.important])
                         }
                     }
                     return
@@ -63,9 +67,9 @@ module.exports = (opts = {}) => {
             }
         
             const media = new postcss.AtRule({ name: 'supports', params: '(-webkit-touch-callout: none)' })
-            for (const [selector, fontFamily] of additionalRules) {
+            for (const [selector, fontFamily, important] of additionalRules) {
                 const rule = new postcss.Rule({ selector })
-                const decl = new postcss.Declaration({ prop: 'font-family', value: fontFamily })
+                const decl = new postcss.Declaration({ prop: 'font-family', value: fontFamily, important })
                 rule.append(decl)
                 media.append(rule)
             }
