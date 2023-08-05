@@ -17,7 +17,7 @@ module.exports = (opts = {}) => {
         Once(css) {
             if (Array.isArray(patterns) && patterns.every(pattern => {
                 const regExp = new RegExp(pattern)
-                return !regExp.test(decl.source.input.from)
+                return !regExp.test(css.source.input.from)
             })) {
                 return
             }
