@@ -1,6 +1,6 @@
 {
   "name": "postcss-pingfang",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "优化 PingFang SC 在安卓机型下的表现",
   "main": "index.js",
   "repository": "git@github.com:SyMind/postcss-pingfang.git",
