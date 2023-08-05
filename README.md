@@ -33,3 +33,7 @@ const output = postcss()
   .process(css)
   .css
 ```
+
+## License
+
+MIT
